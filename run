@@ -1,5 +1,5 @@
 #!/bin/bash
 /home/steam/steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +login anonymous +force_install_dir /home/steam/steamapps/DST +app_update 343050 +quit
 cd $HOME/steamapps/DST/bin
-./dontstarve_dedicated_server_nullrenderer -console
+./dontstarve_dedicated_server_nullrenderer -console "$@"
 
