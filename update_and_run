@@ -1,2 +1,3 @@
-source update
-source run
+#!/bin/bash
+./update
+./run
