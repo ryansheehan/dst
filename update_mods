@@ -1,4 +1,0 @@
-#!/bin/bash
-cd /home/steam/steamapps/DST/bin/
-./dontstarve_dedicated_server_nullrenderer -only_update_server_mods
-

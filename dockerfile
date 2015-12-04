@@ -2,28 +2,29 @@ FROM tianon/steam
 
 MAINTAINER Ryan Sheehan <rsheehan@gmail.com>
 
-WORKDIR $HOME
+ENV DEBIAN_FRONTEND noninteractive
 
-# copy install and update scripts
-ADD ["install_dst", "steamcmd_linux.tar.gz", "/home/steam/"]
-
-# install dst
-RUN $HOME/steamcmd.sh +runscript install_dst
+# expose the slave port
+EXPOSE 10888
 
 # install dependencies
 RUN sudo apt-get update && sudo apt-get install -y libcurl4-gnutls-dev:i386
 
+# add and extract steamcmd
+ADD ["steamcmd_linux.tar.gz", "/home/steam/"]
 
-# expose the master port
-EXPOSE 10888
+# install dst
+RUN $HOME/steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +login anonymous +force_install_dir /home/steam/steamapps/DST +app_update 343050 validate +quit
 
-ADD ["update_game", "update_mods", "run", "update_and_run", "/home/steam/"]
-
-RUN $HOME/update_game
+# copy scripts
+COPY ["run", "/home/steam/"]
 
 # create the data volume
 VOLUME ["/home/steam/.klei/DoNotStarveTogether"]
 
+# default command to run
+CMD ["/home/steam/run"]
+
 # default run the server
-CMD ["./run"]
+ENTRYPOINT ["/bin/bash"]
 
