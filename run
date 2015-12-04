@@ -1,2 +1,3 @@
 #!/bin/bash
-$HOME/steamapps/DST/bin/dontstarve_dedicated_server_nullrenderer -console
+cd $HOME/steamapps/DST/bin/
+./dontstarve_dedicated_server_nullrenderer -console
