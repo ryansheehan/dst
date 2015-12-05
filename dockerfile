@@ -43,9 +43,6 @@ COPY ["run", "/home/steam/"]
 # create the data volume
 VOLUME ["/home/steam/.klei/DoNotStarveTogether"]
 
-# default command to run
-CMD ["/home/steam/run"]
-
 # default run the server
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/home/steam/run"]
 
