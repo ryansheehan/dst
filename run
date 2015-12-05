@@ -1,5 +1,24 @@
 #!/bin/bash
 /home/steam/steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +login anonymous +force_install_dir /home/steam/steamapps/DST +app_update 343050 +quit
+
+mods_file="/home/steam/steamapps/DST/mods/dedicated_server_mods_setup.lua"
+mods_list="/mods/mods.txt"
+if [ -f "$mods_list" ]
+then
+    echo "mods found:"
+    while read p; do
+        if grep -Fx "$p" $mods_file
+        then 
+            echo "    $p already installed."            
+        else
+            echo "    installing $p" 
+            echo "$p" >> $mods_file
+        fi
+    done <$mods_list
+else
+    echo "no mods found."
+fi
+
 cd $HOME/steamapps/DST/bin
 ./dontstarve_dedicated_server_nullrenderer -console "$@"
 

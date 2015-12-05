@@ -41,7 +41,7 @@ RUN $HOME/steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +login
 COPY ["run", "/home/steam/"]
 
 # create the data volume
-VOLUME ["/home/steam/.klei/DoNotStarveTogether"]
+VOLUME ["/home/steam/.klei/DoNotStarveTogether", "/mods"]
 
 # default run the server
 ENTRYPOINT ["/home/steam/run"]
