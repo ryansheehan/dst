@@ -12,7 +12,7 @@ then
             echo "    $p already installed."            
         else
             echo "    installing $p" 
-            echo "$p" >> $mods_file
+            echo "ServerModSetup(\"$p\")" >> $mods_file
         fi
     done <$mods_list
 else

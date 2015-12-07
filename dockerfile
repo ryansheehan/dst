@@ -1,23 +1,30 @@
-FROM tianon/steamos
+FROM ubuntu:15.10
 
 MAINTAINER Ryan Sheehan <rsheehan@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN echo 'deb [arch=amd64,i386] http://repo.steampowered.com/steam precise steam' > /etc/apt/sources.list.d/steam.list && dpkg --add-architecture i386
+# RUN echo 'deb [arch=amd64,i386] http://repo.steampowered.com/steam precise steam' > /etc/apt/sources.list.d/steam.list && dpkg --add-architecture i386
+
+RUN dpkg --add-architecture i386
 
 # install dependencies
-RUN apt-get update && apt-get install -y \
-    libcurl4-gnutls-dev:i386 \
-    libc6:i386 \
+RUN apt-get  update && apt-get install -y \    
+    # libc6:i386 \
     # libgl1-mesa-dri:i386 \
     # libgl1-mesa-glx:i386 \
     lib32gcc1 \
     lib32stdc++6 \
+    libcurl4-gnutls-dev:i386 \
     tar \
     adduser \
     sudo \
+    python \
+    python-pip \
     && apt-get clean
+
+# install crudini
+RUN pip install crudini
 
 # setup steam user
 RUN echo 'steam ALL = NOPASSWD: ALL' > /etc/sudoers.d/steam && chmod 0440 /etc/sudoers.d/steam
