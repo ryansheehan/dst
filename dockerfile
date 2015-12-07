@@ -42,7 +42,7 @@ USER steam
 EXPOSE 10888
 
 # install dst
-RUN $HOME/steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +login anonymous +force_install_dir /home/steam/steamapps/DST +app_update 343050 validate +quit
+RUN $HOME/steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +login anonymous +force_install_dir /home/steam/steamapps/DST +app_update 343050 -beta cavesbeta validate +quit
 
 # copy scripts
 COPY ["run", "/home/steam/"]

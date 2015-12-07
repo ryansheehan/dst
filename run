@@ -1,5 +1,5 @@
 #!/bin/bash
-/home/steam/steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +login anonymous +force_install_dir /home/steam/steamapps/DST +app_update 343050 +quit
+/home/steam/steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +login anonymous +force_install_dir /home/steam/steamapps/DST +app_update 343050 -beta cavesbeta +quit
 
 mods_file="/home/steam/steamapps/DST/mods/dedicated_server_mods_setup.lua"
 mods_list="/mods/mods.txt"
@@ -17,6 +17,19 @@ then
     done <$mods_list
 else
     echo "no mods found."
+fi
+
+settings_file="/home/steam/.klei/DoNotStarveTogether/settings.ini"
+is_master=`crudini --get --verbose "$settings_file" shard is_master`
+echo "CRUDINI: is_master=$is_master"
+if [ $is_master = "false" ]
+then
+    echo "Seting up slave server..."
+    master_ip=$MASTER_PORT_10888_TCP_ADDR
+    echo "Setting master_ip to $master_ip"
+    r=`crudini --set --verbose "$settings_file" shard master_ip $master_ip`    
+else
+    echo "Setting up master server..."
 fi
 
 cd $HOME/steamapps/DST/bin
