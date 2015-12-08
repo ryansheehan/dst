@@ -219,6 +219,23 @@ Attach to slave
 sudo docker attach dstslave0
 ```
 
+## Shutdown Server
+attach to your server and run
+```
+c_shutdown()
+```
+
+## Restart container
+Restart master
+```shell
+sudo docker restart dst
+```
+
+Restart slave
+```shell
+sudo docker restart dstslave0
+```
+
 ## Mods
 **Mods have received little testing**
 
