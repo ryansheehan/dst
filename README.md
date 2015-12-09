@@ -6,11 +6,50 @@ Docker setup for Dont Starve Together dedicated server *including caves!*
 ## Setup docker on server
 *These instructions assume a debian based server, please skip to the volume instructions if you already have docker installed on your machine.*
 
-Open a shell and install docker 
-```shell
-sudo apt-get update
-sudo apt-get install -y docker.io
-```
+For [ubuntu installation click here](https://docs.docker.com/engine/installation/ubuntulinux/)
+
+For [anything else](https://docs.docker.com/engine/installation/)
+
+## Setup docker-compose on server
+*Use this for the super extra easy way to run your Don't Starve Together dedicated server with caves!*
+
+For [ubuntu installation click here](http://docs.docker.com/engine/installation/ubuntulinux/)
+
+For [anything else](https://docs.docker.com/compose/install/)
+
+## Super easy dst dedicated server setup instructions
+*Make sure docker-engine and docker-compose is installed*
+
+1. Create folder with the following directory structure
+   
+   ```
+    dstvolumes/
+        master/
+        slave/
+   ```
+2. Copy server_token.txt into master and slave
+
+   You can follow the section on [generating server_token.txt](#Generate-server-token-and-copy-it-to-the-server)
+   
+   ```
+    dstvolumes/
+        master/
+            server_token.txt
+        slave/
+            server_token.txt
+   ```
+3. Create settings.ini files for master and slave
+   
+   ```
+    dstvolumes/
+        master/
+            server_token.txt
+            settings.ini
+        slave/
+            server_token.txt
+            settings.ini
+   ```
+
 
 ## Build server container from Dockerfile
 **You can skip this step and use the container I built on dockerhub ryshe/dst**
@@ -39,7 +78,7 @@ If running caves create a place for its configuration data
 mkdir -p $HOME/dst_data/slave
 ```
 
-## Generate Server Token and copy it to the server
+## Generate server token and copy it to the server
 1. Run the Don't Starve Together client located in your steam library
 2. Press `~` key to open the console in game
 3. Enter `TheNet:GenerateServerToken()` which will generate a server_token.txt file
