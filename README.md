@@ -30,7 +30,7 @@ For [anything else](https://docs.docker.com/engine/installation/)
           slave/
               server_token.txt
    ```
-3. ##### Add server settings
+3. ##### Add master settings
    [Create settings.ini](#master-settings) for `dstvolumes/master`
    
    *NOTE: settings file is different than the slave's settings.ini*
@@ -187,7 +187,7 @@ For [anything else](https://docs.docker.com/engine/installation/)
 ## Master settings
 Use your favorite text editor and create a file "settings.ini".  Fill it with the following contents.
 
-[Go back](#add-server-settings)
+[Go back](#add-master-settings)
 
 ```ini
 [network]
