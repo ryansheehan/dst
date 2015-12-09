@@ -11,7 +11,7 @@ For [ubuntu installation click here](https://docs.docker.com/engine/installation
 For [anything else](https://docs.docker.com/engine/installation/)
 
 ## Setup data volume on server
-1. Create folder with the following directory structure in your `$HOME` directory
+1. ##### Create a volume directory
    
    ```
    $HOME/
@@ -19,7 +19,8 @@ For [anything else](https://docs.docker.com/engine/installation/)
           master/
           slave/
    ```
-2. [Copy server_token.txt](#generate-server-token) into `dstvolumes/master` and `dstvolumes/slave`
+2. ##### Add server token
+   [Copy server_token.txt](#generate-server-token) into `dstvolumes/master` and `dstvolumes/slave`
 
    ```
    $HOME/
@@ -29,7 +30,9 @@ For [anything else](https://docs.docker.com/engine/installation/)
           slave/
               server_token.txt
    ```
-3. [Create settings.ini](#master-settings.ini) for `dstvolumes/master`
+3. ##### Add server settings
+   [Create settings.ini](#master-settings) for `dstvolumes/master`
+   
    *NOTE: settings file is different than the slave's settings.ini*
 
    ```
@@ -41,7 +44,9 @@ For [anything else](https://docs.docker.com/engine/installation/)
           slave/
               server_token.txt
    ```
-4. [Create settings.ini](#slave-settings.ini) for `dstvolumes/slave`
+4. ##### Add slave settings
+   [Create settings.ini](#slave-settings) for `dstvolumes/slave`
+   
    *NOTE: settings file is different than the master's settings.ini*   
 
    ```
@@ -54,7 +59,8 @@ For [anything else](https://docs.docker.com/engine/installation/)
               server_token.txt
               settings.ini
    ```
-5. [Create worldgenoverride.lua](#create-caves-world) in `dstvolumes/slave`
+5. ##### Configure caves world
+   [Create worldgenoverride.lua](#create-caves-world) in `dstvolumes/slave`
 
    ```
    $HOME/
@@ -67,7 +73,7 @@ For [anything else](https://docs.docker.com/engine/installation/)
               settings.ini
               worldgenoverride.lua
    ```
-6. [Create docker-compose.yml](#create-docker-compose.yml) in `dstvolumes/`
+6. [Create docker-compose.yml](#create-docker-compose) in `dstvolumes/`
    *NOTE: only needed if intending to use docker-compose to launch servers*
 
    ```
@@ -93,6 +99,7 @@ For [anything else](https://docs.docker.com/engine/installation/)
       cd $HOME/dstvolumes
       sudo docker-compose up
       ```
+   
    ### with docker-engine
    1. Start the master server
       
@@ -174,9 +181,13 @@ For [anything else](https://docs.docker.com/engine/installation/)
 3. Enter `TheNet:GenerateServerToken()` which will generate a server_token.txt file
    * Linux: located in ~/.klei/DoNotStarveTogether
    * Windows: located in C:\Users\<your name>\Documents\Klei\DoNotStarveTogether
+[Go back](#add-server-token)    
 
-## Master settings.ini
+
+## Master settings
 Use your favorite text editor and create a file "settings.ini".  Fill it with the following contents.
+
+[Go back](#add-server-settings)
 
 ```ini
 [network]
@@ -235,8 +246,10 @@ Change to your preference:
 5. **do not change `master_port`**
 6. any other configuration option that you wish
 
-## Slave settings.ini
+## Slave settings
 Use your favorite text editor and create a file "settings.ini".  Fill it with the following contents.
+
+[Go back](#add-slave-settings)
 
 ```ini
 [network]
@@ -292,6 +305,8 @@ autocompiler_enabled = true
 ## Create caves world
 *save as `worldgenoverride.lua`*
 
+[Go back](#configure-caves-world)
+
 ```lua
 return {
 override_enabled = true,
@@ -299,7 +314,9 @@ preset="DST_CAVE",
 }
 ```
 
-## Create docker-compose.yml
+## Create docker-compose
+[Go back](#with-docker-compose)
+
 ```yml
 dstslave:
   image: ryshe/dst:latest
@@ -330,8 +347,8 @@ sudo docker build -t <container_name_here> .
 ```
 
 ## Additional Help/Links/Sources
-[Docker](https://docs.docker.com/)
-[DST Dedicated Servers](http://dont-starve-game.wikia.com/wiki/Guides/Don%E2%80%99t_Starve_Together_Dedicated_Servers)
-[DST Console Commands](http://dont-starve-game.wikia.com/wiki/Console/Don't_Starve_Together_Commands)
-[DST Caves Setup](http://forums.kleientertainment.com/topic/57890-playing-caves-beta/) *Check #2*
-[Understanding DST Shards](http://forums.kleientertainment.com/topic/59174-understanding-shards-and-migration-portals/)
+- [Docker](https://docs.docker.com/)
+- [DST Dedicated Servers](http://dont-starve-game.wikia.com/wiki/Guides/Don%E2%80%99t_Starve_Together_Dedicated_Servers)
+- [DST Console Commands](http://dont-starve-game.wikia.com/wiki/Console/Don't_Starve_Together_Commands)
+- [DST Caves Setup](http://forums.kleientertainment.com/topic/57890-playing-caves-beta/)
+- [Understanding DST Shards](http://forums.kleientertainment.com/topic/59174-understanding-shards-and-migration-portals/)
