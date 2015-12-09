@@ -6,7 +6,7 @@ dstslave:
   links:
     - dst:master
   volumes:
-    - $HOME/dst_data/slave:/home/steam/.klei/DoNotStarveTogether
+    - ./slave:/home/steam/.klei/DoNotStarveTogether
 
 dst:
   image: ryshe/dst:latest  
@@ -14,5 +14,5 @@ dst:
     - 10999:10999/udp
   restart: always
   volumes:
-    - $HOME/dst_data/master:/home/steam/.klei/DoNotStarveTogether
+    - ./master:/home/steam/.klei/DoNotStarveTogether
 
