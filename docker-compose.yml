@@ -1,0 +1,18 @@
+dstslave:
+  image: ryshe/dst:latest
+  ports:
+    - 10998:10998/udp
+  restart: always
+  links:
+    - dst:master
+  volumes:
+    - $HOME/dst_data/slave:/home/steam/.klei/DoNotStarveTogether
+
+dst:
+  image: ryshe/dst:latest  
+  ports:
+    - 10999:10999/udp
+  restart: always
+  volumes:
+    - $HOME/dst_data/master:/home/steam/.klei/DoNotStarveTogether
+
